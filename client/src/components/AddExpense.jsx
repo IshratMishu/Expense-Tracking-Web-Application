@@ -40,29 +40,28 @@ const ExpenseTracker = () => {
         const category = form.category.value;
         const amount = Number(form.amount.value);
         const purpose = form.purpose.value;
-        
+
         // Convert the date to a serializable string (ISO format)
         const date = new Date().toISOString();
-    
+
         // Get the total spent in the category
         const totalSpentInCategory = expenses
             .filter((expense) => expense.category === category)
             .reduce((sum, expense) => sum + Number(expense.amount), 0);
-    
+
         // Get the spending limit for the selected category
         const limit = spendingLimits[category];
-    
+
         // If the limit is not set (null or undefined), allow adding the expense
         if (limit !== null && amount + totalSpentInCategory > limit) {
             toast.error(`Expense exceeds limit! Remaining limit for ${category}: $${(limit - totalSpentInCategory).toFixed(2)}`);
             return;
         }
-    
+
         const newExpense = { category, amount, purpose, date };
         dispatch(addExpense(newExpense));
         setIsModalOpen(false);
     };
-    
 
 
 
@@ -70,16 +69,18 @@ const ExpenseTracker = () => {
         <div className="AddExpense">
             <h2>Total Expenses</h2>
             <p>${grandTotal.toFixed(2)}</p>
-            <button onClick={() => setIsModalOpen(true)} className="expenseButton">Add Expense</button>
+            <button onClick={() => setIsModalOpen(true)} className="Button">Add Expense</button>
 
+            {/* Set Limit Button Modal when starting application */}
             {isLimitModalOpen && (
                 <div className="modal">
                     <div className="modal-content">
-                        <button onClick={() => setIsExpenseModalOpen(true)}>Set Your Limit</button>
+                        <button onClick={() => setIsExpenseModalOpen(true)} className="Button">Set Your Limit</button>
                     </div>
                 </div>
             )}
 
+            {/* Set Limit Categories and amount Modal*/}
             {isExpenseModalOpen && (
                 <div className="modal">
                     <div className="modal-content">
@@ -97,16 +98,18 @@ const ExpenseTracker = () => {
                                 </select>
                             </div>
                             <div className="modal-buttons">
-                                <button type="button" onClick={() => setIsExpenseModalOpen(false)}>
+                                <button type="button" onClick={() => setIsExpenseModalOpen(false)} className='cancelButton'>
                                     Cancel
                                 </button>
-                                <button type="submit">Set Limit</button>
+                                <button type="submit" className="Button">Set Limit</button>
                             </div>
                         </form>
                     </div>
                 </div>
             )}
 
+
+            {/* Add Expense Modal */}
             {isModalOpen && (
                 <div className="modal">
                     <div className="modal-content">
@@ -135,10 +138,10 @@ const ExpenseTracker = () => {
                                 />
                             </div>
                             <div className="modal-buttons">
-                                <button type="button" onClick={() => setIsModalOpen(false)}>
+                                <button type="button" onClick={() => setIsModalOpen(false)} className='cancelButton'>
                                     Cancel
                                 </button>
-                                <button type="submit">Add</button>
+                                <button type="submit" className="Button">Add</button>
                             </div>
                         </form>
                     </div>

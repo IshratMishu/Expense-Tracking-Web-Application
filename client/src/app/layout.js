@@ -1,24 +1,18 @@
-'use client'
-import { Toaster } from "react-hot-toast";
+export const metadata = {
+  title: "Where’s My Money?",
+  description: "An expense tracking web app",
+};
+
+import ClientLayout from './clientLayout';
 import "./globals.css";
-import { Provider } from "react-redux";
-import store from "./store";
-
-
-// export const metadata = {
-//   title: "Where’s My Money?",
-//   description: "An expense tracking web app",
-// };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <Provider store={store}>
       <body>
-        {children}
-        <Toaster />
+        {/* Wrap the children with ClientLayout for client-side features */}
+        <ClientLayout>{children}</ClientLayout>
       </body>
-      </Provider>
     </html>
   );
 }

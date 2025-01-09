@@ -7,20 +7,15 @@ body {
   padding-left: 24px;
   padding-right: 24px;
   font-family: "Raleway", sans-serif;
+  background: #D0F1F9;
+  color: #4A4A4A;
 }
 
-/* Navbar css */
-/* .navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-} */
 
-/* AddExpense css */
 .AddExpense {
   text-align: center;
-  line-height: 4px;
-  border: 1px solid black;
+  line-height: 5px;
+  border: 1px solid rgb(198, 197, 197);
   border-radius: 5px;
   padding-top: 18px;
   padding-bottom: 18px;
@@ -28,6 +23,8 @@ body {
   margin-left: auto;
   margin-right: auto;
   margin-top: 56px;
+  background: #bfe8f2;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4);
 }
 
 .AddExpense h2 {
@@ -41,8 +38,23 @@ body {
   font-family: sans-serif;
 }
 
-.expenseButton {
-  padding: 4px;
+.Button {
+  padding: 6px;
+  background: #edc6ba;
+  border-radius: 5px;
+  border: 1px solid;
+}
+
+.Button:hover {
+  background: #f4d8cf;
+  cursor: pointer;
+}
+
+.cancelButton {
+  padding: 6px;
+  background: #c9c6c5;
+  border-radius: 5px;
+  border: none;
 }
 
 /* Modal Styling */
@@ -60,7 +72,7 @@ body {
 }
 
 .modal-content {
-  background: white;
+  background: #bfe8f2;
   padding: 40px;
   border-radius: 5px;
   width: 400px;
@@ -79,8 +91,8 @@ body {
 }
 
 .limit {
-  display: flex; 
-  gap: 10px; 
+  display: flex;
+  gap: 10px;
 }
 
 .form-group input,
@@ -101,10 +113,8 @@ body {
 
 .modal-buttons button {
   width: 48%;
-  padding: 5px;
 }
 
-/* SummaryPage css */
 .summary {
   margin-top: 96px;
 }
@@ -120,21 +130,95 @@ body {
   margin-top: 20px;
 }
 
-.expense-table th, .expense-table td {
+.expense-table th,
+.expense-table td {
   border: 1px solid #ddd;
   padding: 10px;
   text-align: center;
 }
 
 .expense-table th {
-  background-color: #f8f8f8;
+  background: #edc6ba;
 }
 
 .expense-table td {
-  background-color: #fff;
+  background: #fff;
   font-family: sans-serif;
 }
 
 .expense-table tr:nth-child(even) td {
   background-color: #f9f9f9;
+}
+
+
+
+/* Media Queries for Mobile */
+
+@media screen and (max-width:576px) {
+
+  .AddExpense h2,
+  .AddExpense p {
+    font-size: 18px;
+  }
+
+  .modal {
+    width: 95%;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+
+  .modal-content {
+    padding: 40px 20px 40px 20px;
+  }
+
+  .form-group input,
+  .form-group select {
+    font-size: 13px;
+  }
+
+
+  .table-container {
+    overflow-x: auto;
+  }
+
+  /* Table */
+  .expense-table th,
+  .expense-table td {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .expense-table th {
+    font-size: 16px;
+  }
+}
+
+
+/* Media Queries for Tablet */
+@media screen and (min-width:576px) and (max-width:992px) {
+
+  .AddExpense h2,
+  .AddExpense p {
+    font-size: 16px;
+  }
+
+
+  .table-container {
+    overflow-x: auto;
+  }
+
+  .expense-table th,
+  .expense-table td {
+    font-size: 12px;
+    padding: 6px;
+  }
+
+  .expense-table th {
+    font-size: 14px;
+  }
+
+  .expense-table td {
+    font-size: 14px;
+  }
 }

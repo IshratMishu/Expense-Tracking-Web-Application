@@ -24,32 +24,32 @@ async function run() {
   try {
     await client.connect();
 
-
+    // Expense collection setup
     const expenseCollection = client.db("ExpenseDB").collection("addExpense");
 
-
+    // POST endpoint to add an expense
     app.post('/api/addExpense', async (req, res) => {
-        const newExpense = req.body;
-        try {
-          const result = await expenseCollection.insertOne(newExpense);
-          res.send(result);
-        } catch (error) {
-          console.error("Error adding expense:", error);
-          res.status(500).send({ error: "Failed to add expense" });
-        }
-      });   
+      const newExpense = req.body;
+      try {
+        const result = await expenseCollection.insertOne(newExpense);
+        res.send(result);
+      } catch (error) {
+        console.error("Error adding expense:", error);
+        res.status(500).send({ error: "Failed to add expense" });
+      }
+    });
 
-
-      app.get('/api/addExpense', async (req, res) => {
-        try {
-            const cursor = expenseCollection.find();
+    // GET endpoint to fetch all expenses
+    app.get('/api/addExpense', async (req, res) => {
+      try {
+        const cursor = expenseCollection.find();
         const result = await cursor.toArray();
-            res.send(result);
-          } catch (error) {
-            console.error("Error reading expense:", error);
-            res.status(500).send({ error: "Failed to read expense" });
-          }
-      })
+        res.send(result);
+      } catch (error) {
+        console.error("Error reading expense:", error);
+        res.status(500).send({ error: "Failed to read expense" });
+      }
+    })
 
 
 
@@ -65,11 +65,11 @@ run().catch(console.dir);
 
 
 app.get('/', (req, res) => {
-    res.send('Expense IS RUNNING');
-  })
-  
-app.listen(port, () => {
-    console.log(`Expenses are running on port, ${port}`);
-  })
+  res.send('Expense IS RUNNING');
+})
 
-  
+app.listen(port, () => {
+  console.log(`Expenses are running on port, ${port}`);
+})
+
+
