@@ -7,7 +7,7 @@ const port = process.env.PORT || 6001;
 
 //middleware
 app.use(cors({
-  origin: 'http://localhost:3000/',  
+  origin: 'expense-tracking-web-application-8av.vercel.app',  
   methods: ['GET', 'POST']
 }));
 app.use(express.json());
