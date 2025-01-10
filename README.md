@@ -2,6 +2,8 @@
 
 A web application to help users input, categorize, and manage their daily expenses efficiently. Users can organize expenses by categories, set spending limits, and view categorized summaries to stay on top of their finances. This web app is responsive for all devices.
 
+**Live Link**: https://expense-tracking-web-application-utoq.vercel.app/
+
 ---
 
 ## Features
