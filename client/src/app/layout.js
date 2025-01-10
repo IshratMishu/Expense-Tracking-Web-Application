@@ -3,17 +3,17 @@ export const metadata = {
   description: "An expense tracking web app",
 };
 
-import Head from 'next/head';
+
 import ClientLayout from './clientLayout';
 import "./globals.css";
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <Head>
-      {/* ensures proper scaling on mobile devices. */}
+       <head>
+         {/* ensures proper scaling on mobile devices. */}
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      </Head>
+      </head>
       <body>
         {/* Wrap the children with ClientLayout for client-side features */}
         <ClientLayout>{children}</ClientLayout>
