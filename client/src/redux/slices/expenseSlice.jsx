@@ -39,43 +39,62 @@ const initialState = {
     error: null, // To store any error messages if the fetch/add operation fails
 };
 
+
 // Slice to manage expenses state
 const expensesSlice = createSlice({
-    name: 'expenses', // The name of the slice
-    initialState, // The initial state of the slice
+    name: 'expenses',
+    initialState,
     reducers: {
-        // Reducer to set the spending limits for each category
         setSpendingLimits: (state, action) => {
             state.spendingLimits = action.payload;
         },
     },
     extraReducers: (builder) => {
-        // Handling different states of the fetchExpenses async action
         builder
+            // Fetch Expenses
             .addCase(fetchExpenses.pending, (state) => {
-                state.status = 'loading'; // Mark as loading when the fetch request is initiated
+                state.status = 'loading';
             })
             .addCase(fetchExpenses.fulfilled, (state, action) => {
-                state.expenses = action.payload; // Store the fetched expenses in state
+                state.expenses = action.payload;
                 state.grandTotal = action.payload.reduce(
                     (sum, expense) => sum + Number(expense.amount),
                     0
-                ); // Calculate the grand total by summing the amounts of all expenses
-                state.status = 'succeeded'; // Mark as succeeded when the fetch is successful
+                );
+                state.status = 'succeeded';
             })
             .addCase(fetchExpenses.rejected, (state, action) => {
-                state.status = 'failed'; // Mark as failed if the fetch fails
-                state.error = action.error.message; // Store the error message
+                state.status = 'failed';
+                state.error = action.error.message;
+            })
+            // Add Expense
+            .addCase(addExpense.pending, (state) => {
+                state.status = 'loading';
             })
             .addCase(addExpense.fulfilled, (state, action) => {
-                state.expenses.push(action.payload); // Add the new expense to the expenses array
-                state.grandTotal += Number(action.payload.amount); // Update the grand total with the new expense amount
+                // Check spending limit before adding expense
+                const { category, amount } = action.payload;
+                const totalSpentInCategory = state.expenses
+                    .filter((expense) => expense.category === category)
+                    .reduce((sum, expense) => sum + Number(expense.amount), 0);
+
+                const limit = state.spendingLimits[category];
+
+                if (limit && amount + totalSpentInCategory > limit) {
+                    throw new Error(`Expense exceeds limit for ${category}!`);
+                }
+
+                state.expenses.push(action.payload);
+                state.grandTotal += Number(action.payload.amount);
+                state.status = 'succeeded';
+            })
+            .addCase(addExpense.rejected, (state, action) => {
+                state.status = 'failed';
+                state.error = action.error.message;
             });
     },
 });
 
-// Export the action for setting spending limits
 export const { setSpendingLimits } = expensesSlice.actions;
-
-// Export the reducer for the expenses slice
 export default expensesSlice.reducer;
+
