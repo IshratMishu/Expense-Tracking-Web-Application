@@ -53,5 +53,23 @@ A web application to help users input, categorize, and manage their daily expens
 
 1. **Clone the Repository**  
    ```bash
-   git clone https://github.com/your-repo/expense-tracker.git
+   git clone https://github.com/IshratMishu/Expense-Tracking-Web-Application
    cd expense-tracker
+
+2. **Install Dependencies**
+    ```bash
+    npm install
+
+3. **Environment Setup**
+   Ensure you have a MongoDB cluster set up. You can create one using MongoDB Atlas or connect to your local MongoDB instance.
+   Create a .env file in the root directory and add the following:
+   ```plaintext
+   PORT=5000
+   DB_USER=your_database_username
+   DB_PASS=your_database_password
+
+4. **Run the Application**
+    ```bash
+    npm run dev
+
+
