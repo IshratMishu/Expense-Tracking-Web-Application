@@ -61,15 +61,56 @@ A web application to help users input, categorize, and manage their daily expens
     npm install
 
 3. **Environment Setup**
+   
    Ensure you have a MongoDB cluster set up. You can create one using MongoDB Atlas or connect to your local MongoDB instance.
    Create a .env file in the root directory and add the following:
    ```plaintext
-   PORT=5000
+   PORT=6001
    DB_USER=your_database_username
    DB_PASS=your_database_password
 
-4. **Run the Application**
+5. **Run the Application**
     ```bash
     npm run dev
+
+## API Endpoints
+
+### Add an Expense
+- **Method**: POST
+- **URL**: `/api/addExpense`
+- **Description**: Adds a new expense to the database.
+- **Request Body**:
+    ```json
+    {
+      "category": "Groceries",
+      "amount": 100,
+      "description": "Weekly groceries",
+      "date": "2025-01-10"
+    }
+    ```
+
+### Get All Expenses
+- **Method**: GET
+- **URL**: `/api/addExpense`
+- **Description**: Retrieves all expenses stored in the database.
+- **Response Example**:
+    ```json
+    [
+      {
+        "_id": "60c72b2f4f1a4e3d6c4f8b9b",
+        "category": "Groceries",
+        "amount": 100,
+        "description": "Weekly groceries",
+        "date": "2025-01-10"
+      },
+      {
+        "_id": "60c72b2f4f1a4e3d6c4f8b9c",
+        "category": "Transportation",
+        "amount": 50,
+        "description": "Taxi fare",
+        "date": "2025-01-09"
+      }
+    ]
+    ```
 
 
