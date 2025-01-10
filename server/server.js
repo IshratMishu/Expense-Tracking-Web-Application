@@ -6,10 +6,7 @@ const app = express();
 const port = process.env.PORT || 6001;
 
 //middleware
-app.use(cors({
-  origin: 'https://expense-tracking-web-application-8av.vercel.app/',  
-  methods: ['GET', 'POST']
-}));
+app.use(cors());
 app.use(express.json());
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.zzqeakj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
