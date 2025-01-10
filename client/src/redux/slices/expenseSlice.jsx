@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // Base URL for the API requests
 const BASE_URL = 'https://expense-tracking-web-application.vercel.app/api';
-// const BASE_URL = 'http://localhost:3000/api';
+
 
 // Thunk to fetch all expenses from the server
 export const fetchExpenses = createAsyncThunk(
