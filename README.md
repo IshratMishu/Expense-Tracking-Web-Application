@@ -51,27 +51,7 @@ A web application to help users input, categorize, and manage their daily expens
 
 ### Installation Steps
 
-1. **Clone the Repository**
+1. **Clone the Repository**  
    ```bash
    git clone https://github.com/your-repo/expense-tracker.git
    cd expense-tracker
-
-   
-2. **Install Dependencies**
-   ```bash
-  npm install
-
-  
-3. **Environment Setup**
-  Create a `.env` file in the root directory and add the following:
-
-```plaintext
-PORT=5000
-MONGO_URI=your_mongo_connection_string
-
-
-4. **Run the Application**
-   ```bash
- npm run dev
-
-
