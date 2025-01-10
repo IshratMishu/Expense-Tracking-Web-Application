@@ -20,7 +20,6 @@ A web application to help users input, categorize, and manage their daily expens
 ### **Spending Limit**
 - Set a monthly spending limit upon first use.
 - Define specific spending limits for each category.
-- Prevents users from exceeding spending limits with real-time alerts.
 
 ---
 
@@ -84,7 +83,7 @@ A web application to help users input, categorize, and manage their daily expens
     {
       "category": "Groceries",
       "amount": 100,
-      "description": "Weekly groceries",
+      "purpose": "Weekly groceries",
       "date": "2025-01-10"
     }
     ```
@@ -100,15 +99,8 @@ A web application to help users input, categorize, and manage their daily expens
         "_id": "60c72b2f4f1a4e3d6c4f8b9b",
         "category": "Groceries",
         "amount": 100,
-        "description": "Weekly groceries",
+        "purpose": "Weekly groceries",
         "date": "2025-01-10"
-      },
-      {
-        "_id": "60c72b2f4f1a4e3d6c4f8b9c",
-        "category": "Transportation",
-        "amount": 50,
-        "description": "Taxi fare",
-        "date": "2025-01-09"
       }
     ]
     ```
