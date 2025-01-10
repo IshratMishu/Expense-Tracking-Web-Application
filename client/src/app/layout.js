@@ -1,11 +1,11 @@
+import ClientLayout from './clientLayout';
+import "./globals.css";
+
 export const metadata = {
   title: "Where’s My Money?",
   description: "An expense tracking web app",
 };
 
-
-import ClientLayout from './clientLayout';
-import "./globals.css";
 
 export default function RootLayout({ children }) {
   return (
