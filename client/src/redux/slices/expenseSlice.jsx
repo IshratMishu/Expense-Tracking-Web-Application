@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 // Base URL for the API requests
-const BASE_URL = 'expense-tracking-web-application.vercel.app/api/addExpense';
+const BASE_URL = 'https://expense-tracking-web-application.vercel.app/api/addExpense';
 
 // Thunk to fetch all expenses from the server
 export const fetchExpenses = createAsyncThunk('expenses/fetchExpenses', async () => {
