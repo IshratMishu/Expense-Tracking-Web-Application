@@ -52,7 +52,7 @@ A web application to help users input, categorize, and manage their daily expens
 
 1. **Clone the Repository**  
    ```bash
-   git clone https://github.com/IshratMishu/Expense-Tracking-Web-Application
+   git clone https://github.com/IshratMishu/Expense-Tracking-Web-Application.git
    cd expense-tracker
 
 2. **Install Dependencies**
