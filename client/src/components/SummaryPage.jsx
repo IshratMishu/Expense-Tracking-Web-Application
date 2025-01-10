@@ -15,6 +15,8 @@ const SummaryPage = () => {
         dispatch(fetchExpenses());
     }, [dispatch]);
 
+
+    // Group expenses by date and category
     const groupedExpenses = expenses.reduce((acc, expense) => {
         const date = new Date(expense.date).toLocaleDateString();
         const category = expense.category;
@@ -34,6 +36,7 @@ const SummaryPage = () => {
                 <thead>
                     <tr>
                         <th>Date</th>
+                        {/* Map categories to table headers */}
                         {categories.map((category) => (
                             <th key={category}>{category}</th>
                         ))}
@@ -42,6 +45,7 @@ const SummaryPage = () => {
                 </thead>
                 <tbody>
                     {Object.keys(groupedExpenses).map((date) => {
+                        // Calculate daily total for each date
                         const dailyTotal = categories.reduce(
                             (sum, category) =>
                                 sum +
@@ -56,11 +60,13 @@ const SummaryPage = () => {
                             <tr key={date}>
                                 <td>{date}</td>
                                 {categories.map((category) => {
+                                     // Calculate total expense for each category
                                     const totalCategoryAmount = groupedExpenses[date][category]?.reduce(
                                         (sum, expense) => sum + Number(expense.amount),
                                         0
                                     ) || 0;
 
+                                    // Prepare tooltip content for the category
                                     const tooltipContent =
                                         groupedExpenses[date][category]
                                             ?.map(expense => `Amount: $${expense.amount} - Purpose: ${expense.purpose}`)
@@ -68,6 +74,7 @@ const SummaryPage = () => {
 
                                     return (
                                         <td key={`${date}-${category}`}>
+                                            {/* If there are expenses, show amount with tooltip */}
                                             {totalCategoryAmount > 0 ? (
                                                 <span
                                                     data-tooltip-id={`${date}-${category}`}
@@ -84,6 +91,7 @@ const SummaryPage = () => {
 
                                     );
                                 })}
+                                {/* Display daily total */}
                                 <td>${dailyTotal.toFixed(2)}</td>
                             </tr>
                         );
