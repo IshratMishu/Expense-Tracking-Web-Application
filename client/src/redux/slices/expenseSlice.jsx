@@ -8,8 +8,9 @@ const BASE_URL = 'https://expense-tracking-web-application.vercel.app/api/addExp
 // Thunk to fetch all expenses from the server
 export const fetchExpenses = createAsyncThunk('expenses/fetchExpenses', async () => {
     const response = await axios.get(BASE_URL);
-    return response.data; // Returns the fetched expenses data
+    return response.data;
 });
+
 
 // Thunk to add a new expense to the server
 export const addExpense = createAsyncThunk('expenses/addExpense', async (newExpense) => {
@@ -19,13 +20,13 @@ export const addExpense = createAsyncThunk('expenses/addExpense', async (newExpe
     if (response.data.insertedId) {
         return { ...newExpense, id: response.data.insertedId };
     } else {
-        throw new Error('Failed to add expense'); // In case of failure, an error is thrown
+        throw new Error('Failed to add expense');
     }
 });
 
 // Initial state structure for the expenses slice
 const initialState = {
-    expenses: [], // Array to store the expenses data
+    expenses: [],
     spendingLimits: {
         Groceries: null,
         Transportation: null,
@@ -34,9 +35,9 @@ const initialState = {
         Charity: null,
         Miscellaneous: null,
     },
-    grandTotal: 0, // The total amount spent across all expenses
-    status: 'idle', // The status of the fetch/add operation ('idle', 'loading', 'succeeded', 'failed')
-    error: null, // To store any error messages if the fetch/add operation fails
+    grandTotal: 0,
+    status: 'idle',
+    error: null,
 };
 
 

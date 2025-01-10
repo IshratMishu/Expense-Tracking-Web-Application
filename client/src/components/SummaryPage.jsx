@@ -31,74 +31,74 @@ const SummaryPage = () => {
     return (
         <div className="summary">
             <h2>Summary of Expenses</h2>
-           <div className='table-container'>
-           <table className="expense-table">
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        {/* Map categories to table headers */}
-                        {categories.map((category) => (
-                            <th key={category}>{category}</th>
-                        ))}
-                        <th>Daily Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {Object.keys(groupedExpenses).map((date) => {
-                        // Calculate daily total for each date
-                        const dailyTotal = categories.reduce(
-                            (sum, category) =>
-                                sum +
-                                (groupedExpenses[date][category]?.reduce(
-                                    (catSum, expense) => catSum + Number(expense.amount),
-                                    0
-                                ) || 0),
-                            0
-                        );
-
-                        return (
-                            <tr key={date}>
-                                <td>{date}</td>
-                                {categories.map((category) => {
-                                     // Calculate total expense for each category
-                                    const totalCategoryAmount = groupedExpenses[date][category]?.reduce(
-                                        (sum, expense) => sum + Number(expense.amount),
+            <div className='table-container'>
+                <table className="expense-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            {/* Map categories to table headers */}
+                            {categories.map((category) => (
+                                <th key={category}>{category}</th>
+                            ))}
+                            <th>Daily Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {Object.keys(groupedExpenses).map((date) => {
+                            // Calculate daily total for each date
+                            const dailyTotal = categories.reduce(
+                                (sum, category) =>
+                                    sum +
+                                    (groupedExpenses[date][category]?.reduce(
+                                        (catSum, expense) => catSum + Number(expense.amount),
                                         0
-                                    ) || 0;
+                                    ) || 0),
+                                0
+                            );
 
-                                    // Prepare tooltip content for the category
-                                    const tooltipContent =
-                                        groupedExpenses[date][category]
-                                            ?.map(expense => `Amount: $${expense.amount} - Purpose: ${expense.purpose}`)
-                                            .join('\n') || '';
+                            return (
+                                <tr key={date}>
+                                    <td>{date}</td>
+                                    {categories.map((category) => {
+                                        // Calculate total expense for each category
+                                        const totalCategoryAmount = groupedExpenses[date][category]?.reduce(
+                                            (sum, expense) => sum + Number(expense.amount),
+                                            0
+                                        ) || 0;
 
-                                    return (
-                                        <td key={`${date}-${category}`}>
-                                            {/* If there are expenses, show amount with tooltip */}
-                                            {totalCategoryAmount > 0 ? (
-                                                <span
-                                                    data-tooltip-id={`${date}-${category}`}
-                                                    data-tooltip-content={tooltipContent}
-                                                    style={{ cursor: 'pointer' }}
-                                                >
-                                                    ${totalCategoryAmount.toFixed(2)}
-                                                </span>
-                                            ) : (
-                                                ''
-                                            )}
-                                            <Tooltip id={`${date}-${category}`} />
-                                        </td>
+                                        // Prepare tooltip content for the category
+                                        const tooltipContent =
+                                            groupedExpenses[date][category]
+                                                ?.map(expense => `Amount: $${expense.amount} - Purpose: ${expense.purpose}`)
+                                                .join('\n') || '';
 
-                                    );
-                                })}
-                                {/* Display daily total */}
-                                <td>${dailyTotal.toFixed(2)}</td>
-                            </tr>
-                        );
-                    })}
-                </tbody>
-            </table>
-           </div>
+                                        return (
+                                            <td key={`${date}-${category}`}>
+                                                {/* If there are expenses, show amount with tooltip */}
+                                                {totalCategoryAmount > 0 ? (
+                                                    <span
+                                                        data-tooltip-id={`${date}-${category}`}
+                                                        data-tooltip-content={tooltipContent}
+                                                        style={{ cursor: 'pointer' }}
+                                                    >
+                                                        ${totalCategoryAmount.toFixed(2)}
+                                                    </span>
+                                                ) : (
+                                                    ''
+                                                )}
+                                                <Tooltip id={`${date}-${category}`} />
+                                            </td>
+
+                                        );
+                                    })}
+                                    {/* Display daily total */}
+                                    <td>${dailyTotal.toFixed(2)}</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };
